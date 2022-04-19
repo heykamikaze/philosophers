@@ -109,14 +109,19 @@
 //         pthread_join(threads[i], NULL);
 //     }
 // }
+void	ft_exit(int index)
+{
+	if (index == 1)
+		printf("%s", "MEMORY ERROR");
+	if (index == 2)
+		printf("%s", "ARG ERROR");
+	exit (EXIT_FAILURE);
+}
 
 int	ft_is_digit(int c)
 {
 	if (c <= 47 || c >= 58)
-	{
-		printf("INCORRECT ARGUMENT");
-		exit (1);
-	}
+		ft_exit(2);
 	return (0);
 }
 
@@ -149,7 +154,7 @@ int	ft_atoi(const char *str)
 	return (b * negative);
 }
 
-void	ft_arg_check(char **argv, int argc, t_table *table)
+void	ft_arg_check(char **argv, int argc, t_table *table) //checks argc, init struct elements
 {
 	int	i;
 	int	j;
@@ -176,12 +181,14 @@ int	main(int argc, char **argv)
 
 	table = malloc(sizeof(t_table));
 		if (!table)
-			exit (EXIT_FAILURE);
+			ft_exit(1);
 	if (argc == 5 || argc == 6)
 		ft_arg_check(argv, argc, table);
-	printf("%d\n", table->n_of_philos);
-	printf("%d\n", table->t_to_die);
-	printf("%d\n", table->t_to_eat);
-	printf("%d\n", table->t_to_sleep);
-	printf("%d\n", table->numb_to_eat);
+	else 
+		ft_exit(2);
+	// printf("%d\n", table->n_of_philos);
+	// printf("%d\n", table->t_to_die);
+	// printf("%d\n", table->t_to_eat);
+	// printf("%d\n", table->t_to_sleep);
+	// printf("%d\n", table->numb_to_eat);
 }
