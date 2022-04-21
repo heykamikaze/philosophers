@@ -173,7 +173,47 @@ void	ft_arg_check(char **argv, int argc, t_table *table) //checks argc, init str
 	table->t_to_sleep = ft_atoi(argv[4]);
 	if (argc == 6)
 		table->numb_to_eat = ft_atoi(argv[5]);
+	table->forks_m = NULL;
+	table->phil = NULL;
+	table->phil = malloc(sizeof(t_phil) * table->n_of_philos);
+	if (!table->phil)
+		ft_exit(1);
 }
+
+void	ft_start_table(t_table *table)
+{
+	int	i;
+
+	i = 0;
+	while (i < table->n_of_philos)
+	{
+		table->phil[i].meals_counter = 0;
+		table->phil[i].num = i;
+		table->phil[i].left_fork = i;
+		table->phil[i].right_fork  = (i + 1) % table->n_of_philos;
+		table->phil[i].table = table;
+		if (table->n_of_philos == 1)
+			table->phil[i].eat_flag = 0;
+		else 
+			table->phil[i].eat_flag = 1;
+		pthread_mutex_init(&table->phil[i].mutex, NULL);
+		pthread_mutex_init(&table->phil[i].eat_m, NULL);
+		pthread_mutex_lock(&table->phil[i].eat_m);
+		i++;
+	}
+}
+
+void	ft_start_mutex(t_table *table)
+{
+	int	i;
+
+	i = 0;
+	pthread_mutex_init(&table->message_m, NULL);
+	pthread_mutex_init(&table->death_mutex, NULL);
+	pthread_mutex_lock(&table->death_mutex);
+	
+}
+
 
 int	main(int argc, char **argv)
 {
@@ -183,12 +223,16 @@ int	main(int argc, char **argv)
 		if (!table)
 			ft_exit(1);
 	if (argc == 5 || argc == 6)
+	{
 		ft_arg_check(argv, argc, table);
+		ft_start_table(table);
+		ft_start_mutex(table);
 	else 
 		ft_exit(2);
-	// printf("%d\n", table->n_of_philos);
-	// printf("%d\n", table->t_to_die);
-	// printf("%d\n", table->t_to_eat);
-	// printf("%d\n", table->t_to_sleep);
-	// printf("%d\n", table->numb_to_eat);
+	
+	printf("n_of_philos %d\n", table->n_of_philos);
+	printf("t_to_die %d\n", table->t_to_die);
+	printf("t_to_eat %d\n", table->t_to_eat);
+	printf("t_to_sleep %d\n", table->t_to_sleep);
+	printf("numb_to_eat %d\n", table->numb_to_eat);
 }
