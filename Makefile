@@ -4,7 +4,9 @@ CC = cc
 
 CFLAGS = -Wall -Wextra -Werror
 
-SRC = 
+SRC =	main.c\
+		init.c\
+		utils.c
 
 OBJ = $(patsubst %.c, %.o, $(SRC))
 
