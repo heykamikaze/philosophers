@@ -1,2 +1,2 @@
 # philosophers
-What does a liar do when he's dead? *Lies still.*
+Вот они слева направо: Намджун, Чонгук, Чингачгук, Гойко Митич. Люблю вас!
