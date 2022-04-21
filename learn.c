@@ -24,8 +24,8 @@
 // 		pthread_join(t1, NULL);
 // 		pthread_join(t2, NULL);
 // 		// usleep(3000000);
-// 		write(1, "Exit\n", 5);
-// }
+		write(1, "Exit\n", 5);
+}
 
 void* routine() {
 	printf("test from threads\n");
