@@ -10,6 +10,14 @@
 # include <sys/types.h>
 # include <sys/wait.h>
 # include <sys/time.h>
+# include <machine/types.h>
+
+# define DIED "  died\n"
+# define EAT " is eating\n"
+# define SLEEP " is sleeping\n"
+# define THINK " is thinking\n"
+# define FORK " has taken a fork\n"
+# define DONE " all philosophers have eaten enough\n"
 
 typedef struct s_phil
 {
@@ -20,7 +28,7 @@ typedef struct s_phil
 	int	left_fork; //left fork number 
 	int	right_fork;//right fork number 
 	int	meals_counter;//how many times the philo has eaten already 
-	struct	t_table	*table;//to get the access to general struct with the info regarding timestamps and food
+	struct	s_table	*table;//to get the access to general struct with the info regarding timestamps and food
 	pthread_mutex_t	mutex;//mutexes for eating process
 	pthread_mutex_t	eat_m;
 }   t_phil;
@@ -47,6 +55,21 @@ int		ft_atoi(const char *str);
 int		ft_is_digit(int c);
 void	ft_exit(int index);
 void	ft_start_table(t_table *table);
-void	ft_start_mutex(t_table *table);
+int		ft_start_mutex(t_table *table);
+long	ft_get_time(long time);
+long	ft_get_time(long time);
+char	*ft_message(int status_code);
+void	ft_state(t_phil *phil, int status_code);
+void	*ft_cycle(void *ptr);
+void	*ft_spectator(void *phil);
+void	*ft_process(void *phil);
+int	ft_run_phil(t_table *table);
+void	ft_usleep(time_t millisec, long start_time);
+void	ft_drop_fork(t_phil *philo);
+void	ft_eat(t_phil *philo);
+void	ft_take_fork(t_phil *philo);
+void	ft_putstr(char *s);
+void	ft_putnbr(long n);
+void	ft_putchar(char c);
 
 #endif
