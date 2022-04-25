@@ -1,2 +1,2 @@
 # philosophers
-Вот они слева направо: Намджун, Чонгук, Чингачгук, Гойко Митич. Люблю вас!
+Stromae is a poet, visionary and a philosopher.  That's why he's in pain
