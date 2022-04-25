@@ -109,50 +109,6 @@
 //         pthread_join(threads[i], NULL);
 //     }
 // }
-void	ft_exit(int index)
-{
-	if (index == 1)
-		printf("%s", "MEMORY ERROR");
-	if (index == 2)
-		printf("%s", "ARG ERROR");
-	exit (EXIT_FAILURE);
-}
-
-int	ft_is_digit(int c)
-{
-	if (c <= 47 || c >= 58)
-		ft_exit(2);
-	return (0);
-}
-
-int	ft_atoi(const char *str)
-{
-	int			a;
-	long int	b;
-	long int	negative;
-
-	a = 0;
-	b = 0;
-	negative = 1;
-	while ((str[a] >= 9 && str[a] <= 13) || str[a] == 32)
-		a++;
-	if (str[a] == 45 || str[a] == 43)
-	{
-		if (str[a] == 45)
-			negative *= -1;
-		a++;
-	}
-	while (str[a] >= 48 && str[a] <= 57)
-	{
-		b = b * 10 + (str[a] - 48);
-		if (b * negative > 2147483647)
-			return (-1);
-		else if (b * negative < -2147483648)
-			return (0);
-		a++;
-	}
-	return (b * negative);
-}
 
 void	ft_arg_check(char **argv, int argc, t_table *table) //checks argc, init struct elements
 {
@@ -180,40 +136,6 @@ void	ft_arg_check(char **argv, int argc, t_table *table) //checks argc, init str
 		ft_exit(1);
 }
 
-void	ft_start_table(t_table *table)
-{
-	int	i;
-
-	i = 0;
-	while (i < table->n_of_philos)
-	{
-		table->phil[i].meals_counter = 0;
-		table->phil[i].num = i;
-		table->phil[i].left_fork = i;
-		table->phil[i].right_fork  = (i + 1) % table->n_of_philos;
-		table->phil[i].table = table;
-		if (table->n_of_philos == 1)
-			table->phil[i].eat_flag = 0;
-		else 
-			table->phil[i].eat_flag = 1;
-		pthread_mutex_init(&table->phil[i].mutex, NULL);
-		pthread_mutex_init(&table->phil[i].eat_m, NULL);
-		pthread_mutex_lock(&table->phil[i].eat_m);
-		i++;
-	}
-}
-
-void	ft_start_mutex(t_table *table)
-{
-	int	i;
-
-	i = 0;
-	pthread_mutex_init(&table->message_m, NULL);
-	pthread_mutex_init(&table->death_mutex, NULL);
-	pthread_mutex_lock(&table->death_mutex);
-	
-}
-
 
 int	main(int argc, char **argv)
 {
@@ -225,14 +147,18 @@ int	main(int argc, char **argv)
 	if (argc == 5 || argc == 6)
 	{
 		ft_arg_check(argv, argc, table);
-		ft_start_table(table);
-		ft_start_mutex(table);
+		ft_start_table(table);//старт 
+		ft_start_mutex(table);//все в ините с мьютексами 
+	}
 	else 
 		ft_exit(2);
-	
-	printf("n_of_philos %d\n", table->n_of_philos);
-	printf("t_to_die %d\n", table->t_to_die);
-	printf("t_to_eat %d\n", table->t_to_eat);
-	printf("t_to_sleep %d\n", table->t_to_sleep);
-	printf("numb_to_eat %d\n", table->numb_to_eat);
+	ft_run_phil(table);
+	pthread_mutex_lock(&table->death_mutex);
+	pthread_mutex_unlock(&table->death_mutex);
+	// printf("n_of_philos %d\n", table->n_of_philos);
+	// printf("t_to_die %d\n", table->t_to_die);
+	// printf("t_to_eat %d\n", table->t_to_eat);
+	// printf("t_to_sleep %d\n", table->t_to_sleep);
+	// printf("numb_to_eat %d\n", table->numb_to_eat);
+	return (0);
 }
