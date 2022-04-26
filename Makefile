@@ -1,30 +1,25 @@
-NAME = philo 
+NAME = philo
+GCC = gcc
+CFLAGS = -Wall -Werror -Wextra
 
-CC = cc 
+SRCS = main.c \
+		utils.c \
+		init.c \
+		operations.c \
 
-CFLAGS = -Wall -Wextra -Werror
+OBJS = $(SRCS:.c=.o)
 
-SRC =	main.c\
-		init.c\
-		utils.c\
-		operations.c\
+all:  $(NAME)
 
-OBJ = $(patsubst %.c, %.o, $(SRC))
+$(NAME): $(OBJS) philo.h Makefile
+	$(GCC) $(CFLAGS) $(OBJS) -o $(NAME)
 
-RM = rm -rf
-
-all: $(NAME)
-
-$(NAME): $(OBJ) philo.c
-	$(CC) $(OBJ) -o $(NAME)
-
-%.o: %.c
-	$(CC) $(CFLAGS) -c $< -o $@
-
-clean: 
-	$(RM) $(OBJ)
+clean:
+	rm -f $(OBJS)
 
 fclean: clean
-	$(RM) $(NAME)
+	rm -f $(NAME)
 
 re: fclean all
+
+.PHONY: all clean fclean

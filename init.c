@@ -77,7 +77,7 @@ void	ft_state(t_phil *phil, int status_code)
 	if (done == 0)
 	{
 		ft_putnbr(ft_get_time(phil->table->start_time));
-		ft_putchar('\t');
+		ft_putchar(32);
 		if (status_code != 5)
 			ft_putnbr(phil->num + 1);
 		if (status_code == 5 || status_code == 0)
@@ -106,7 +106,10 @@ void	*ft_cycle(void *ptr)
 		count++;
 	}
 	ft_state(&table->phil[0], 5);
-	pthread_mutex_unlock(&table->death_mutex);
+	if (count == table->numb_to_eat) //локай стдин перед выходом 
+		exit(1);
+	else
+		pthread_mutex_unlock(&table->death_mutex);
 	return (NULL);
 
 }
