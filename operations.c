@@ -1,11 +1,33 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   operations.c                                       :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: nbenjami <nbenjami@student.21-school.ru>   +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2022/04/27 16:45:27 by nbenjami          #+#    #+#             */
+/*   Updated: 2022/04/27 19:08:06 by nbenjami         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "philo.h"
 
 void	ft_take_fork(t_phil *philo)
 {
-	pthread_mutex_lock(&philo->table->forks_m[philo->left_fork]);
-	ft_state(philo, 4);
-	pthread_mutex_lock(&philo->table->forks_m[philo->right_fork]);
-	ft_state(philo, 4);
+	// if (philo->num % 2 == 0)
+	// {
+		pthread_mutex_lock(&philo->table->forks_m[philo->left_fork]);
+		ft_state(philo, 4);
+		pthread_mutex_lock(&philo->table->forks_m[philo->right_fork]);
+		ft_state(philo, 4);
+	// }
+	// else
+	// {
+	// 	pthread_mutex_lock(&philo->table->forks_m[philo->right_fork]);
+	// 	ft_state(philo, 4);
+	// 	pthread_mutex_lock(&philo->table->forks_m[philo->left_fork]);
+	// 	ft_state(philo, 4);
+	// }
 }
 
 void	ft_eat(t_phil *philo)
@@ -15,7 +37,7 @@ void	ft_eat(t_phil *philo)
 	philo->eat_last_time = ft_get_time(philo->table->start_time);
 	philo->death_time = philo->eat_last_time + philo->table->t_to_die;
 	ft_state(philo, 1);
-	ft_usleep(philo->table->t_to_eat, philo->table->start_time); //write usleep
+	ft_usleep(philo->table->t_to_eat, philo->table->start_time);
 	philo->meals_counter += 1;
 	philo->eat_flag = 0;
 	pthread_mutex_unlock(&philo->mutex);

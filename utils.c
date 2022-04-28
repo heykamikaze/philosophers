@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   utils.c                                            :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: nbenjami <nbenjami@student.21-school.ru>   +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2022/04/27 17:22:53 by nbenjami          #+#    #+#             */
+/*   Updated: 2022/04/28 20:47:03 by nbenjami         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "philo.h"
 
 void	ft_exit(int index)
@@ -6,14 +18,14 @@ void	ft_exit(int index)
 		printf("%s", "MEMORY ERROR");
 	if (index == 2)
 		printf("%s", "ARG ERROR");
-	exit (EXIT_FAILURE);
+	return ;
 }
 
 int	ft_is_digit(int c)
 {
 	if (c <= 47 || c >= 58)
-		ft_exit(2);
-	return (0);
+		return (0);
+	return (1);
 }
 
 int	ft_atoi(const char *str)
@@ -69,9 +81,4 @@ void	ft_putnbr(long n)
 	}
 	else
 		ft_putchar('0' + n);
-}
-
-void	ft_putchar(char c)
-{
-	write(1, &c, 1);
 }
