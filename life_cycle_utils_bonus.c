@@ -6,11 +6,11 @@
 /*   By: nbenjami <nbenjami@student.21-school.ru>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/01 20:08:35 by nbenjami          #+#    #+#             */
-/*   Updated: 2022/06/01 20:08:38 by nbenjami         ###   ########.fr       */
+/*   Updated: 2022/06/02 00:20:52 by nbenjami         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "./philo_bonus.h"
+#include "philo_bonus.h"
 
 void	*check_dead(void *args)
 {

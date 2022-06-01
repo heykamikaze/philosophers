@@ -6,11 +6,11 @@
 /*   By: nbenjami <nbenjami@student.21-school.ru>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/01 20:07:04 by nbenjami          #+#    #+#             */
-/*   Updated: 2022/06/01 20:08:54 by nbenjami         ###   ########.fr       */
+/*   Updated: 2022/06/02 00:20:53 by nbenjami         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "./philo_bonus.h"
+#include "philo_bonus.h"
 
 void	*life_cycle(void *obj)
 {

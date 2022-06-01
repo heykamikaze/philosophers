@@ -6,11 +6,11 @@
 /*   By: nbenjami <nbenjami@student.21-school.ru>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/01 20:10:22 by nbenjami          #+#    #+#             */
-/*   Updated: 2022/06/01 20:46:11 by nbenjami         ###   ########.fr       */
+/*   Updated: 2022/06/02 00:20:55 by nbenjami         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "./philo_bonus.h"
+#include "philo_bonus.h"
 
 void	end_programm(t_env *env)
 {
