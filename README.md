@@ -1,4 +1,4 @@
-# Philosophers | The Dining Philosopher Problem, a classical problem introduced by E. Dijkstra for his students to make them understand the concept  of concurrent or parallel processes.
+## Philosophers | The Dining Philosopher Problem, a classical problem introduced by E. Dijkstra for his students to make them understand the concept  of concurrent or parallel processes.
 
 >"Programming in basic causes brain damage." -Edsger W. Dijkstra 
 
