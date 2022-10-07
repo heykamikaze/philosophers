@@ -1,6 +1,7 @@
-# philosophers
->Programming in basic causes brain damage.
->>Edsger W. Dijkstra 
+# Philosophers | The Dining Philosopher Problem, a classical problem introduced by E. Dijkstra for his students to make them understand the concept  of concurrent or parallel processes.
+
+>"Programming in basic causes brain damage." -Edsger W. Dijkstra 
+
 ![image](https://github.com/heykamikaze/philosophers/blob/skool/072010_CACMpg41_An-Interview.large.jpg)
 
 ![image](https://github.com/heykamikaze/philosophers/blob/skool/Запись%20экрана%202022-10-07%20в%2014.04.30.gif)
