@@ -1,4 +1,6 @@
 # philosophers
+>Programming in basic causes brain damage.
+>>Edsger W. Dijkstra 
 ### 🚩 Mandatory part
 
 You will have to write one program for the mandatory part and one for the bonus part
